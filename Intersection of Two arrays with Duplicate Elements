@@ -1,0 +1,15 @@
+class Solution:
+    def intersectionWithDuplicates(self, a, b):
+        # code here
+        hm = set()
+        arr = []
+        for i in a:
+            hm.add(i)
+        for i in b:
+            if i in hm:
+                arr.append(i)
+                hm.remove(i)
+        return arr
+
+
+
