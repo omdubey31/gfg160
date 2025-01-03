@@ -1,0 +1,20 @@
+Problem = Count Subarrays with given XOR
+
+
+class Solution:
+    def subarrayXor(self, arr, k):
+        # code here
+        ans = 0
+        n = len(arr)
+        map = {0: 1}
+        
+        xor = 0
+        for i in range(n):
+            xor ^= arr[i]
+            need = xor ^ k
+            
+            ans += map.get(need, 0)
+            
+            map[xor] = map.get(xor, 0) + 1
+        return ans
+
