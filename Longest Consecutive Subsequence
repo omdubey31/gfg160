@@ -1,0 +1,24 @@
+Problem = Longest Consecutive Subsequence
+
+
+class Solution:
+    
+    # arr[] : the input array
+    
+    #Function to return length of longest subsequence of consecutive integers.
+    def longestConsecutive(self,arr):
+        #code here
+        arr.sort()
+        sum_count = 1
+        temp = 1
+        for i in range(len(arr) - 1):
+            if arr[i] + 1 == arr[i + 1]:
+                temp += 1
+            elif arr[i] == arr[i + 1]:
+                continue
+            else:
+                sum_count = max(sum_count, temp)
+                temp = 1
+            sum_count = max(sum_count, temp)
+
+        return sum_count
