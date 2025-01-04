@@ -1,0 +1,16 @@
+Problem = Count all triplets with given sum in sorted array
+
+
+class Solution:
+    def countTriplets(self, arr, target):
+        # code here
+        n = len(arr)
+        count = 0
+        map = {}
+        for i in range(n):
+            for j in range(i + 1, n):
+                sum = arr[i] + arr[j]
+                diff = target - sum
+                count += map.get(diff, 0)
+            map[arr[i]] = map.get(arr[i], 0) + 1
+        return count
