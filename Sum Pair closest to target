@@ -1,0 +1,26 @@
+Problem = Sum Pair closest to target
+
+
+class Solution:
+    def sumClosest(self, arr, target):
+        # code here
+        arr.sort()
+        i = 0
+        j = len(arr) - 1
+        minDiff = float('inf')
+        closest_pair = []
+
+        while i < j:
+            sum_ = arr[i] + arr[j]
+            diff = abs(target - sum_)
+            if diff < minDiff:
+                minDiff = diff
+                closest_pair = [arr[i], arr[j]]
+            if sum_ > target:
+                j -= 1
+            elif sum_ < target:
+                i += 1
+            else:
+                return [arr[i], arr[j]]
+        
+        return closest_pair
