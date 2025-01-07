@@ -1,0 +1,19 @@
+Count Pairs whose sum is less than target
+
+class Solution:
+    #Complete the below function
+    def countPairs(self, arr, target):
+        #Your code here
+        n = len(arr)
+        count = 0
+        arr.sort()
+        
+        low = 0
+        high = len(arr) - 1
+        while low < high:
+            if (arr[low] + arr[high]) < target:
+                count += (high - low)
+                low += 1
+            else:
+                high -= 1
+        return count
