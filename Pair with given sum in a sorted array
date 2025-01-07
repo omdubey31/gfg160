@@ -1,0 +1,40 @@
+Problem = Pair with given sum in a sorted array
+
+
+class Solution:
+    def countPairs (self, arr, target) : 
+        #Complete the function
+        n = len(arr)
+        cnt = 0
+        st = 0
+        end = n - 1
+        
+        while st < end:
+            sum = arr[st] + arr[end]
+            if sum == target:
+                if arr[st] == arr[end]:
+                    length = end - st
+                    if length > 0:
+                        cnt += length * (length + 1) // 2
+                    break
+                left = 1
+                right = 1
+                while st + 1 < end and arr[st + 1] == arr[st]:
+                    left += 1
+                    st += 1
+                st += 1
+                while end - 1 >= st and arr[end - 1] == arr[end]:
+                    right += 1
+                    end -= 1
+                end -= 1
+                cnt += left * right
+            elif sum < target:
+                st += 1
+            else:
+                end -= 1
+        
+        return cnt
+
+
+
+
