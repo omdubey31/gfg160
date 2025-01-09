@@ -1,0 +1,17 @@
+class Solution:
+    def subarraySum(self, arr, target):
+        # code here
+        n=len(arr)
+        currSum=arr[0]
+        i,j=0,0
+        while True:
+            if currSum==target:
+                return [i+1,j+1]
+            elif currSum>target:
+                currSum-=arr[i]
+                i+=1
+            else:
+                j+=1
+                if j==n:
+                    return [-1]
+                currSum+=arr[j]
