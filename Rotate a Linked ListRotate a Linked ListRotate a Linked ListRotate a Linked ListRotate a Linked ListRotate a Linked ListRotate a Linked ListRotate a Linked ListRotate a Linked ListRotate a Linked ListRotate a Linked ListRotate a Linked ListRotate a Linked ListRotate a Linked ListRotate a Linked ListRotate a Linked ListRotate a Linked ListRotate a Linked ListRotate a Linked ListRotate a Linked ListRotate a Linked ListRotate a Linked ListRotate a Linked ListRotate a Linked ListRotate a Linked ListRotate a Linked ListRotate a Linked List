@@ -1,0 +1,43 @@
+class Solution:
+    
+    #Function to rotate a linked list.
+    def rotate(self, head, k):
+        # code here
+        lSize = self.size(head)
+        k = k % lSize
+        reverseHead = self.reverseNode(head)
+        
+        curr = reverseHead
+        for i in range(lSize - k - 1):
+            curr = curr.next
+        nextNode = curr.next
+        curr.next = None 
+        
+        reverseStartingNode = self.reverseNode(reverseHead)
+        reverseNextNode = self.reverseNode(nextNode)
+        temp = reverseStartingNode
+        while temp.next is not None:
+            temp = temp.next
+        temp.next = reverseNextNode  
+        
+        return reverseStartingNode
+
+    @staticmethod
+    def reverseNode(head):
+        curr = head
+        prev = None
+        while curr is not None:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+        return prev
+
+    @staticmethod
+    def size(node):
+        count = 0
+        curr = node
+        while curr is not None:
+            count += 1
+            curr = curr.next
+        return count
