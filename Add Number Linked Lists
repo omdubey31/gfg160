@@ -1,0 +1,41 @@
+class Solution:
+    def addTwoLists(self, num1, num2):
+        # code here
+        num1_reversed = self.reverse(num1)
+        num2_reversed = self.reverse(num2)
+        
+        dummy = Node(0)
+        current = dummy
+        carry = 0
+        
+        while num1_reversed or num2_reversed or carry:
+            n1 = num1_reversed.data if num1_reversed else 0
+            n2 = num2_reversed.data if num2_reversed else 0
+            
+            total = n1 + n2 + carry
+            carry = total // 10
+            current.next = Node(total % 10)
+            current = current.next
+            
+            if num1_reversed:
+                num1_reversed = num1_reversed.next
+            if num2_reversed:
+                num2_reversed = num2_reversed.next
+        
+        sum_list = self.reverse(dummy.next)
+        
+        while sum_list.data==0:
+            sum_list=sum_list.next
+        
+        return sum_list if sum_list else Node(0)
+    
+    def reverse(self, head):
+        prev = None
+        current = head
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        return prev
+
