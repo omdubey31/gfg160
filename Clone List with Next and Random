@@ -1,0 +1,28 @@
+class Solution:
+    def cloneLinkedList(self, head):
+        # code here
+        from collections import defaultdict
+        itr=head
+        
+        dummy=Node(0)
+        temp=dummy
+        hashmap=defaultdict(lambda:None)
+        ind=defaultdict(lambda:None)
+        i=0
+        while itr:
+            temp.next=Node(itr.data)
+            temp=temp.next
+            ind[itr]=temp
+            hashmap[i]=itr.random
+            itr=itr.next
+            i+=1
+        
+        
+        temp=dummy.next
+        itr=head
+        for z in range(i):
+            temp.random=ind[hashmap[z]]
+            temp=temp.next
+        return dummy.next
+        
+        
